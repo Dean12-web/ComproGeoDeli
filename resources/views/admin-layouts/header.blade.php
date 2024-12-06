@@ -49,7 +49,7 @@
     <div class="wrapper">
         <header class="main-header" style="height: auto; min-height: 100%;">
             <!-- Logo -->
-            <a href="index2.html" class="logo">
+            <a href="{{ route('cms.dashboard') }}" class="logo">
                 <!-- mini logo for sidebar mini 50x50 pixels -->
                 <span class="logo-mini"><b>G</b>AS</span>
                 <!-- logo for regular state and mobile devices -->
