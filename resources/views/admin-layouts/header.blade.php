@@ -45,9 +45,9 @@
         href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
 </head>
 
-<body class="hold-transition skin-yellow sidebar-mini">
+<body class="hold-transition skin-yellow sidebar-mini" style="height: auto; min-height: 100%;">
     <div class="wrapper">
-        <header class="main-header">
+        <header class="main-header" style="height: auto; min-height: 100%;">
             <!-- Logo -->
             <a href="index2.html" class="logo">
                 <!-- mini logo for sidebar mini 50x50 pixels -->

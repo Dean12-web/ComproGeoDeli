@@ -19,13 +19,16 @@ Route::get('/', function () {
 
 //CMS ROUTE
 Route::prefix('cms')->name('cms.')->group(function () {
+    Route::redirect('/', '/cms/dashboard')->name('home');
+
     Route::view('/dashboard', 'cms.home')->name('dashboard');
-    Route::view('/users', 'cms.users')->name('users');
-    Route::view('/blogs', 'cms.blogs')->name('blogs');
-    Route::view('/contact', 'cms.contacts')->name('contact');
-    Route::view('/services', 'cms.services')->name('services');
-    Route::view('/info', 'cms.info')->name('info');
-    Route::view('/media', 'cms.medias')->name('media');
-    Route::view('/faqs', 'cms.faqs')->name('faqs');
-    Route::view('/testimony', 'cms.testimonies')->name('testimony');
+    Route::view('/users', 'cms.users.users')->name('users');
+    Route::view('/users/add-user', 'cms.users.add-user')->name('add-user');
+    Route::view('/blogs', 'cms.blogs.blogs')->name('blogs');
+    Route::view('/contact', 'cms.contacts.contacts')->name('contact');
+    Route::view('/services', 'cms.services.services')->name('services');
+    Route::view('/info', 'cms.info.info')->name('info');
+    Route::view('/media', 'cms.medias.medias')->name('media');
+    Route::view('/faqs', 'cms.faqs.faqs')->name('faqs');
+    Route::view('/testimony', 'cms.testimonies.testimonies')->name('testimony');
 });
