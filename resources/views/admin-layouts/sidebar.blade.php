@@ -2,12 +2,18 @@
     <!-- sidebar: style can be found in sidebar.less -->
     <section class="sidebar">
         <!-- Sidebar user panel -->
+        {{-- <div class="user-panel" style="height: 60px">
+            <div class="info" style="margin-left: -46px">
+                <p>{{ auth()->user()->username }}</p>
+                <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
+            </div>
+        </div> --}}
         <div class="user-panel">
             <div class="pull-left image">
-                <img src="dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
+                <img src="{{ asset('images') }}/user.png" class="img-circle" alt="User Image">
             </div>
             <div class="pull-left info">
-                <p>Alexander Pierce</p>
+                <p>{{ auth()->user()->username }}</p>
                 <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
             </div>
         </div>
@@ -20,46 +26,46 @@
                 </a>
             </li>
             <li class="{{ request()->routeIs('cms.users') ? 'active' : '' }}">
-                <a href="{{route('cms.users')}}">
+                <a href="{{ route('cms.users') }}">
                     <i class="fa fa-users"></i> <span>Users</span>
                 </a>
             </li>
             <li class="{{ request()->routeIs('cms.blogs') ? 'active' : '' }}">
-                <a href="{{route('cms.blogs')}}">
+                <a href="{{ route('cms.blogs') }}">
                     <i class="fa fa-newspaper-o"></i> <span>Blog/News</span>
                 </a>
             </li>
             <li class="{{ request()->routeIs('cms.contacts') ? 'active' : '' }}">
-                <a href="{{route('cms.contact')}}">
+                <a href="{{ route('cms.contact') }}">
                     <i class="fa fa-phone"></i> <span>Contacts</span>
                 </a>
             </li>
             <li class="{{ request()->routeIs('cms.services') ? 'active' : '' }}">
-                <a href="{{route('cms.services')}}">
+                <a href="{{ route('cms.services') }}">
                     <i class="fa fa-file-archive-o"></i> <span>Services</span>
                 </a>
             </li>
             <li class="{{ request()->routeIs('cms.info') ? 'active' : '' }}">
-                <a href="{{route('cms.info')}}">
+                <a href="{{ route('cms.info') }}">
                     <i class="fa fa-home"></i> <span>Company info</span>
                 </a>
             </li>
             <li class="{{ request()->routeIs('cms.testimony') ? 'active' : '' }}">
-                <a href="{{route('cms.testimony')}}">
+                <a href="{{ route('cms.testimony') }}">
                     <i class="fa fa-paw"></i> <span>Testimony</span>
                 </a>
             </li>
             <li class="{{ request()->routeIs('cms.media') ? 'active' : '' }}">
-                <a href="{{route('cms.media')}}">
+                <a href="{{ route('cms.media') }}">
                     <i class="fa fa-file-image-o"></i> <span>Media</span>
                 </a>
             </li>
             <li class="{{ request()->routeIs('cms.faqs') ? 'active' : '' }}">
-                <a href="{{route('cms.faqs')}}">
+                <a href="{{ route('cms.faqs') }}">
                     <i class="fa fa-question"></i> <span>FAQs</span>
                 </a>
             </li>
-            
+
         </ul>
     </section>
     <!-- /.sidebar -->

@@ -33,159 +33,21 @@
                                 </div>
                                 <div class="row">
                                     <div class="col-sm-12">
-                                        <table id="example2" class="table table-bordered table-hover dataTable"
+                                        <table id="users-table" class="table table-bordered table-hover dataTable"
                                             role="grid" aria-describedby="example2_info">
                                             <thead>
                                                 <tr role="row">
-                                                    <th class="sorting_asc" tabindex="0" aria-controls="example2"
-                                                        rowspan="1" colspan="1" aria-sort="ascending"
-                                                        aria-label="Rendering engine: activate to sort column descending">
-                                                        Rendering engine</th>
-                                                    <th class="sorting" tabindex="0" aria-controls="example2"
-                                                        rowspan="1" colspan="1"
-                                                        aria-label="Browser: activate to sort column ascending">Browser</th>
-                                                    <th class="sorting" tabindex="0" aria-controls="example2"
-                                                        rowspan="1" colspan="1"
-                                                        aria-label="Platform(s): activate to sort column ascending">
-                                                        Platform(s)</th>
-                                                    <th class="sorting" tabindex="0" aria-controls="example2"
-                                                        rowspan="1" colspan="1"
-                                                        aria-label="Engine version: activate to sort column ascending">
-                                                        Engine version</th>
-                                                    <th class="sorting" tabindex="0" aria-controls="example2"
-                                                        rowspan="1" colspan="1"
-                                                        aria-label="CSS grade: activate to sort column ascending">CSS grade
-                                                    </th>
+                                                    <th class="sorting_asc" tabindex="0" rowspan="1" colspan="1">
+                                                        ID</th>
+                                                    <th class="sorting" tabindex="0" rowspan="1" colspan="1">
+                                                        Username</th>
+                                                    <th class="sorting" tabindex="0" rowspan="1" colspan="1">
+                                                        Role user</th>
+                                                    <th class="sorting" tabindex="0" rowspan="1" colspan="1">
+                                                        Action</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-                                                <tr role="row" class="odd">
-                                                    <td class="sorting_1">Gecko</td>
-                                                    <td>Firefox 1.0</td>
-                                                    <td>Win 98+ / OSX.2+</td>
-                                                    <td>1.7</td>
-                                                    <td>A</td>
-                                                </tr>
-                                                <tr role="row" class="even">
-                                                    <td class="sorting_1">Gecko</td>
-                                                    <td>Firefox 1.5</td>
-                                                    <td>Win 98+ / OSX.2+</td>
-                                                    <td>1.8</td>
-                                                    <td>A</td>
-                                                </tr>
-                                                <tr role="row" class="odd">
-                                                    <td class="sorting_1">Gecko</td>
-                                                    <td>Firefox 2.0</td>
-                                                    <td>Win 98+ / OSX.2+</td>
-                                                    <td>1.8</td>
-                                                    <td>A</td>
-                                                </tr>
-                                                <tr role="row" class="even">
-                                                    <td class="sorting_1">Gecko</td>
-                                                    <td>Firefox 3.0</td>
-                                                    <td>Win 2k+ / OSX.3+</td>
-                                                    <td>1.9</td>
-                                                    <td>A</td>
-                                                </tr>
-                                                <tr role="row" class="odd">
-                                                    <td class="sorting_1">Gecko</td>
-                                                    <td>Camino 1.0</td>
-                                                    <td>OSX.2+</td>
-                                                    <td>1.8</td>
-                                                    <td>A</td>
-                                                </tr>
-                                                <tr role="row" class="even">
-                                                    <td class="sorting_1">Gecko</td>
-                                                    <td>Camino 1.5</td>
-                                                    <td>OSX.3+</td>
-                                                    <td>1.8</td>
-                                                    <td>A</td>
-                                                </tr>
-                                                <tr role="row" class="odd">
-                                                    <td class="sorting_1">Gecko</td>
-                                                    <td>Netscape 7.2</td>
-                                                    <td>Win 95+ / Mac OS 8.6-9.2</td>
-                                                    <td>1.7</td>
-                                                    <td>A</td>
-                                                </tr>
-                                                <tr role="row" class="even">
-                                                    <td class="sorting_1">Gecko</td>
-                                                    <td>Netscape Browser 8</td>
-                                                    <td>Win 98SE+</td>
-                                                    <td>1.7</td>
-                                                    <td>A</td>
-                                                </tr>
-                                                <tr role="row" class="odd">
-                                                    <td class="sorting_1">Gecko</td>
-                                                    <td>Netscape Navigator 9</td>
-                                                    <td>Win 98+ / OSX.2+</td>
-                                                    <td>1.8</td>
-                                                    <td>A</td>
-                                                </tr>
-                                                <tr role="row" class="even">
-                                                    <td class="sorting_1">Gecko</td>
-                                                    <td>Mozilla 1.0</td>
-                                                    <td>Win 95+ / OSX.1+</td>
-                                                    <td>1</td>
-                                                    <td>A</td>
-                                                </tr>
                                             </tbody>
                                         </table>
                                     </div>
@@ -231,4 +93,89 @@
             <!-- /.row -->
         </section>
     </div>
+    <script>
+        $(document).ready(function() {
+            function fetchUserData() {
+                $.get('/api/cms/users', function(response) {
+                    if (response.data && response.data.data) {
+                        const users = response.data.data;
+                        let tableBody = $('#users-table tbody');
+                        tableBody.empty(); 
+
+                        users.forEach((user, index) => {
+                            tableBody.append(`
+                        <tr>
+                            <td>${index + 1}</td>
+                            <td>${user.username}</td>
+                            <td>${user.role_user}</td>
+                            <td>
+                                <button class="btn btn-sm btn-social btn-danger delete-user" data-id="${user.id}">
+                                    <i class="fa fa-trash"></i> Hapus
+                                </button>
+                            </td>
+                        </tr>
+                    `);
+                        });
+
+                        $('#example2_info').text(
+                            `Showing ${response.data.from} to ${response.data.to} of ${response.data.total} entries`
+                        );
+
+                        let pagination = $('#example2_paginate .pagination');
+                        pagination.empty();
+                        for (let i = 1; i <= response.data.last_page; i++) {
+                            pagination.append(`
+                        <li class="paginate_button ${response.data.current_page === i ? 'active' : ''}">
+                            <a href="#" data-page="${i}" tabindex="0">${i}</a>
+                        </li>
+                    `);
+                        }
+                    } else {
+                        console.error('No data found in the response.');
+                    }
+                }).fail(function(error) {
+                    console.error('Error fetching data:', error);
+                });
+            }
+
+            fetchUserData();
+
+            $(document).on('click', '#example2_paginate .pagination a', function(e) {
+                e.preventDefault();
+                const page = $(this).data('page');
+
+                if (page) {
+                    $.get(`/api/cms/users/data?page=${page}`, function(response) {
+                        fetchUserData(response);
+                    });
+                }
+            });
+
+            $(document).on('click', '.delete-user', function() {
+                const userId = $(this).data('id');
+                if (confirm('Are you sure you want to delete this user?')) {
+                    $.ajax({
+                        url: '/api/cms/users/delete-user',
+                        type: 'DELETE',
+                        data: {
+                            id: userId
+                        },
+                        headers: {
+                            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr(
+                                'content') 
+                        },
+                        success: function(response) {
+                            alert(response.success);
+                            fetchUserData(); 
+                        },
+                        error: function(error) {
+                            alert('Error: ' + (error.responseJSON?.error ||
+                                'An unknown error occurred.'));
+                        }
+                    });
+                }
+            });
+        });
+    </script>
+
 @endsection

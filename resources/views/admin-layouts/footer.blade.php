@@ -1,14 +1,9 @@
 <footer class="main-footer">
-    <strong>Copyright &copy; 2024 <a href="https://adminlte.io">GEODELI ALAM SEJAHTERA</a>.</strong> All rights
+    <strong>Copyright &copy; 2024 <a href="#">GEODELI ALAM SEJAHTERA</a>.</strong> All rights
     reserved.
 </footer>
 </div>
 <!-- ./wrapper -->
-
-<!-- jQuery 3 -->
-<script src="{{ asset('admin-frontend') }}/bower_components/jquery/dist/jquery.min.js"></script>
-<!-- jQuery UI 1.11.4 -->
-<script src="{{ asset('admin-frontend') }}/bower_components/jquery-ui/jquery-ui.min.js"></script>
 <!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
 <script>
     $.widget.bridge('uibutton', $.ui.button);

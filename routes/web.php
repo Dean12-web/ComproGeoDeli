@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\LoginController;
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -19,16 +21,24 @@ Route::get('/', function () {
 
 //CMS ROUTE
 Route::prefix('cms')->name('cms.')->group(function () {
-    Route::redirect('/', '/cms/dashboard')->name('home');
+    Route::get('/login', [LoginController::class, 'index'])->name('login')->middleware('guest');
+    Route::post('/login', [LoginController::class, 'authenticate']);
+    Route::post('/logout', [LoginController::class, 'logout']);
 
-    Route::view('/dashboard', 'cms.home')->name('dashboard');
-    Route::view('/users', 'cms.users.users')->name('users');
-    Route::view('/users/add-user', 'cms.users.add-user')->name('add-user');
-    Route::view('/blogs', 'cms.blogs.blogs')->name('blogs');
-    Route::view('/contact', 'cms.contacts.contacts')->name('contact');
-    Route::view('/services', 'cms.services.services')->name('services');
-    Route::view('/info', 'cms.info.info')->name('info');
-    Route::view('/media', 'cms.medias.medias')->name('media');
-    Route::view('/faqs', 'cms.faqs.faqs')->name('faqs');
-    Route::view('/testimony', 'cms.testimonies.testimonies')->name('testimony');
+    Route::get('/profile', [UserController::class, 'edit'])->name('profile')->middleware('auth');
+    Route::post('/profile/changepassword', [UserController::class, 'update'])->name('changepassword')->middleware('auth');
+
+    Route::redirect('/', '/cms/login');
+
+    Route::view('/dashboard', 'cms.home')->name('dashboard')->middleware('auth');
+    Route::view('/users', 'cms.users.users')->name('users')->middleware('auth');
+    Route::get('/users/add-user', [UserController::class, 'create'])->name('add-user')->middleware('auth');
+    Route::post('/users/store-user', [UserController::class, 'store'])->name('store-user')->middleware('auth');
+    Route::view('/blogs', 'cms.blogs.blogs')->name('blogs')->middleware('auth');
+    Route::view('/contact', 'cms.contacts.contacts')->name('contact')->middleware('auth');
+    Route::view('/services', 'cms.services.services')->name('services')->middleware('auth');
+    Route::view('/info', 'cms.info.info')->name('info')->middleware('auth');
+    Route::view('/media', 'cms.medias.medias')->name('media')->middleware('auth');
+    Route::view('/faqs', 'cms.faqs.faqs')->name('faqs')->middleware('auth');
+    Route::view('/testimony', 'cms.testimonies.testimonies')->name('testimony')->middleware('auth');
 });

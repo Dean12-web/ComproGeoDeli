@@ -32,6 +32,10 @@
     <!-- bootstrap wysihtml5 - text editor -->
     <link rel="stylesheet"
         href="{{ asset('admin-frontend') }}/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css">
+    <!-- jQuery 3 -->
+    <script src="{{ asset('admin-frontend') }}/bower_components/jquery/dist/jquery.min.js"></script>
+    <!-- jQuery UI 1.11.4 -->
+    <script src="{{ asset('admin-frontend') }}/bower_components/jquery-ui/jquery-ui.min.js"></script>
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -67,23 +71,21 @@
                         <!-- User Account: style can be found in dropdown.less -->
                         <li class="dropdown user user-menu">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                                <img src="dist/img/user2-160x160.jpg" class="user-image" alt="User Image">
-                                <span class="hidden-xs">Alexander Pierce</span>
+                                <span class="fa fa-lg fa-user"></span>
+                                <span class="hidden-xs">{{ auth()->user()->username }}</span>
                             </a>
                             <ul class="dropdown-menu">
-                                <!-- User image -->
-                                <li class="user-header">
-                                    <img src="dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
-
-                                    <p>
-                                        Alexander Pierce - Web Developer
-                                        <small>Member since Nov. 2012</small>
-                                    </p>
-                                </li>
                                 <!-- Menu Footer-->
                                 <li class="user-footer">
-                                    <div class="text-center">
-                                        <a href="#" class="btn btn-default btn-flat">Sign out</a>
+                                    <div class="pull-left">
+                                        <a href="{{ route('cms.profile') }}"
+                                            class="btn btn-default btn-flat">Pengaturan</a>
+                                    </div>
+                                    <div class="pull-right">
+                                        <form action="{{ 'logout' }}" method="POST">
+                                            @csrf
+                                            <button type="submit" class="btn btn-default btn-flat">Sign out</button>
+                                        </form>
                                     </div>
                                 </li>
                             </ul>
