@@ -12,8 +12,6 @@
             <ol class="breadcrumb">
                 <li><a href="{{ route('cms.users') }}"><i class="fa fa-users"></i> Users</a></li>
                 <li><a href="#">Tambah user</a></li>
-
-
             </ol>
         </section>
         <section class="content">

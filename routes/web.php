@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\LoginController;
+use App\Http\Controllers\ServiceController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
@@ -36,7 +37,11 @@ Route::prefix('cms')->name('cms.')->group(function () {
     Route::post('/users/store-user', [UserController::class, 'store'])->name('store-user')->middleware('auth');
     Route::view('/blogs', 'cms.blogs.blogs')->name('blogs')->middleware('auth');
     Route::view('/contact', 'cms.contacts.contacts')->name('contact')->middleware('auth');
-    Route::view('/services', 'cms.services.services')->name('services')->middleware('auth');
+    Route::get('/services', [ServiceController::class, 'index'])->name('services')->middleware('auth');
+    Route::get('/services/add-services', [ServiceController::class, 'create'])->name('add-services')->middleware('auth');
+    Route::get('/services/edit-services/{id}', [ServiceController::class, 'edit'])->name('edit-services')->middleware('auth');
+    Route::put('/services/update-services/{service}', [ServiceController::class, 'update'])->name('update-services')->middleware('auth');
+    Route::post('/services/store-services', [ServiceController::class, 'store'])->name('store-services')->middleware('auth');
     Route::view('/info', 'cms.info.info')->name('info')->middleware('auth');
     Route::view('/media', 'cms.medias.medias')->name('media')->middleware('auth');
     Route::view('/faqs', 'cms.faqs.faqs')->name('faqs')->middleware('auth');

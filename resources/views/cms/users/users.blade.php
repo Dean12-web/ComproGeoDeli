@@ -34,7 +34,7 @@
                                 <div class="row">
                                     <div class="col-sm-12">
                                         <table id="users-table" class="table table-bordered table-hover dataTable"
-                                            role="grid" aria-describedby="example2_info">
+                                            role="grid" aria-describedby="users_info">
                                             <thead>
                                                 <tr role="row">
                                                     <th class="sorting_asc" tabindex="0" rowspan="1" colspan="1">
@@ -54,32 +54,12 @@
                                 </div>
                                 <div class="row">
                                     <div class="col-sm-7">
-                                        <div class="dataTables_info" id="example2_info" role="status" aria-live="polite">
+                                        <div class="dataTables_info" id="users_info" role="status" aria-live="polite">
                                             Showing 1 to 10 of 57 entries</div>
                                     </div>
                                     <div class="col-sm-5">
-                                        <div class="dataTables_paginate paging_simple_numbers" id="example2_paginate">
-                                            <ul class="pagination">
-                                                <li class="paginate_button previous disabled" id="example2_previous"><a
-                                                        href="#" aria-controls="example2" data-dt-idx="0"
-                                                        tabindex="0">Previous</a></li>
-                                                <li class="paginate_button active"><a href="#"
-                                                        aria-controls="example2" data-dt-idx="1" tabindex="0">1</a>
-                                                </li>
-                                                <li class="paginate_button "><a href="#" aria-controls="example2"
-                                                        data-dt-idx="2" tabindex="0">2</a></li>
-                                                <li class="paginate_button "><a href="#" aria-controls="example2"
-                                                        data-dt-idx="3" tabindex="0">3</a></li>
-                                                <li class="paginate_button "><a href="#" aria-controls="example2"
-                                                        data-dt-idx="4" tabindex="0">4</a></li>
-                                                <li class="paginate_button "><a href="#" aria-controls="example2"
-                                                        data-dt-idx="5" tabindex="0">5</a></li>
-                                                <li class="paginate_button "><a href="#" aria-controls="example2"
-                                                        data-dt-idx="6" tabindex="0">6</a></li>
-                                                <li class="paginate_button next" id="example2_next"><a href="#"
-                                                        aria-controls="example2" data-dt-idx="7" tabindex="0">Next</a>
-                                                </li>
-                                            </ul>
+                                        <div class="dataTables_paginate paging_simple_numbers" id="users_paginate">
+                                            <ul class="pagination"></ul>
                                         </div>
                                     </div>
                                 </div>
@@ -94,63 +74,79 @@
         </section>
     </div>
     <script>
-        $(document).ready(function() {
-            function fetchUserData() {
-                $.get('/api/cms/users', function(response) {
+        $(document).ready(function () {
+            // Fetch and display user data
+            function fetchUserData(page = 1) {
+                $.get(`/api/cms/users?page=${page}`, function (response) {
                     if (response.data && response.data.data) {
                         const users = response.data.data;
-                        let tableBody = $('#users-table tbody');
-                        tableBody.empty(); 
-
+                        const tableBody = $("#users-table tbody");
+                        tableBody.empty();
+    
+                        // Populate table rows
                         users.forEach((user, index) => {
                             tableBody.append(`
-                        <tr>
-                            <td>${index + 1}</td>
-                            <td>${user.username}</td>
-                            <td>${user.role_user}</td>
-                            <td>
-                                <button class="btn btn-sm btn-social btn-danger delete-user" data-id="${user.id}">
-                                    <i class="fa fa-trash"></i> Hapus
-                                </button>
-                            </td>
-                        </tr>
-                    `);
+                                <tr>
+                                    <td>${response.data.from + index}</td>
+                                    <td>${user.username}</td>
+                                    <td>${user.role_user}</td>
+                                    <td>
+                                        <button class="btn btn-sm btn-social btn-danger delete-user" data-id="${user.id}">
+                                            <i class="fa fa-trash"></i> Hapus
+                                        </button>
+                                    </td>
+                                </tr>
+                            `);
                         });
-
-                        $('#example2_info').text(
+    
+                        $("#users_info").text(
                             `Showing ${response.data.from} to ${response.data.to} of ${response.data.total} entries`
                         );
-
-                        let pagination = $('#example2_paginate .pagination');
+    
+                        const pagination = $("#users_paginate .pagination");
                         pagination.empty();
+    
+                        pagination.append(`
+                            <li class="paginate_button previous ${response.data.current_page === 1 ? "disabled" : ""}">
+                                <a href="#" data-page="${response.data.current_page - 1}" tabindex="0">Prev</a>
+                            </li>
+                        `);
+    
                         for (let i = 1; i <= response.data.last_page; i++) {
                             pagination.append(`
-                        <li class="paginate_button ${response.data.current_page === i ? 'active' : ''}">
-                            <a href="#" data-page="${i}" tabindex="0">${i}</a>
-                        </li>
-                    `);
+                                <li class="paginate_button ${response.data.current_page === i ? "active" : ""}">
+                                    <a href="#" data-page="${i}" tabindex="0">${i}</a>
+                                </li>
+                            `);
                         }
+
+                        pagination.append(`
+                            <li class="paginate_button next ${response.data.current_page === response.data.last_page ? "disabled" : ""}">
+                                <a href="#" data-page="${response.data.current_page + 1}" tabindex="0">Next</a>
+                            </li>
+                        `);
                     } else {
-                        console.error('No data found in the response.');
+                        console.error("No data found in the response.");
                     }
-                }).fail(function(error) {
-                    console.error('Error fetching data:', error);
+                }).fail(function (error) {
+                    console.error("Error fetching data:", error);
+                    alert("Failed to load data. Please try again.");
                 });
             }
-
+    
+            // Initialize user data
             fetchUserData();
-
-            $(document).on('click', '#example2_paginate .pagination a', function(e) {
+    
+            // Handle pagination clicks
+            $(document).on("click", "#users_paginate .pagination a", function (e) {
                 e.preventDefault();
-                const page = $(this).data('page');
-
-                if (page) {
-                    $.get(`/api/cms/users/data?page=${page}`, function(response) {
-                        fetchUserData(response);
-                    });
+                const page = $(this).data("page");
+                if (page && !$(this).parent().hasClass("disabled")) {
+                    fetchUserData(page);
                 }
             });
-
+    
+            // Handle user deletion
             $(document).on('click', '.delete-user', function() {
                 const userId = $(this).data('id');
                 if (confirm('Are you sure you want to delete this user?')) {
@@ -162,11 +158,11 @@
                         },
                         headers: {
                             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr(
-                                'content') 
+                                'content')
                         },
                         success: function(response) {
                             alert(response.success);
-                            fetchUserData(); 
+                            fetchUserData();
                         },
                         error: function(error) {
                             alert('Error: ' + (error.responseJSON?.error ||
@@ -177,5 +173,7 @@
             });
         });
     </script>
+    
+    
 
 @endsection
