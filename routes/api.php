@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\FaqController;
 use App\Http\Controllers\ServiceController;
 use App\Http\Controllers\UserController;
 use Illuminate\Http\Request;
@@ -25,3 +26,6 @@ Route::delete('cms/users/delete-user', [UserController::class, 'delete'])->name(
 
 Route::get('services', [ServiceController::class, 'data'])->name('services');
 Route::delete('cms/services/delete-service', [ServiceController::class, 'destroy'])->name('delete-service');
+
+Route::get('faqs', [FaqController::class, 'show'])->name('faqs');
+Route::delete('cms/faq/delete-faq', [FaqController::class, 'destroy'])->name('delete-faq');

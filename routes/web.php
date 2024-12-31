@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\FaqController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\ServiceController;
 use App\Http\Controllers\UserController;
@@ -44,6 +45,10 @@ Route::prefix('cms')->name('cms.')->group(function () {
     Route::post('/services/store-services', [ServiceController::class, 'store'])->name('store-services')->middleware('auth');
     Route::view('/info', 'cms.info.info')->name('info')->middleware('auth');
     Route::view('/media', 'cms.medias.medias')->name('media')->middleware('auth');
-    Route::view('/faqs', 'cms.faqs.faqs')->name('faqs')->middleware('auth');
+    Route::get('/faqs', [FaqController::class, 'index'])->name('faqs')->middleware('auth');
+    Route::get('/faqs/add-faqs', [FaqController::class, 'create'])->name('add-faqs')->middleware('auth');
+    Route::post('/faqs/store-faqs', [FaqController::class, 'store'])->name('store-faqs')->middleware('auth');
+    Route::get('/faqs/edit-faqs/{id}', [FaqController::class, 'edit'])->name('edit-faqs')->middleware('auth');
+    Route::put('/faqs/update-faqs/{faq}', [FaqController::class, 'update'])->name('update-faqs')->middleware('auth');
     Route::view('/testimony', 'cms.testimonies.testimonies')->name('testimony')->middleware('auth');
 });

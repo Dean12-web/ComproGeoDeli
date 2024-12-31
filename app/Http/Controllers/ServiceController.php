@@ -34,7 +34,7 @@ class ServiceController extends Controller
 
         $query->orderBy($sortBy, $sortDirection);
 
-        $data = $query->paginate(($perPage));
+        $data = $query->paginate($perPage);
 
         return response()->json([
             "message" => "Data successfully showed",
