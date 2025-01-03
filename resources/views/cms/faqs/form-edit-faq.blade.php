@@ -1,18 +1,18 @@
 @extends('admin-layouts.master')
 
-@section('title', 'CMS Service')
+@section('title', 'CMS Edit Faq')
 
 @section('content')
     <div class="content-wrapper">
         <!-- Content Header (Page header) -->
         <section class="content-header">
             <h1>
-                Tambah Layanan
+                Edit Faq
                 <small>Control panel</small>
             </h1>
             <ol class="breadcrumb">
                 <li><a href="#"><i class="fa fa-home"></i> Home</a></li>
-                <li class="active"><i class="fa fa-uaser"></i> Tambah Layanan</li>
+                <li class="active"><i class="fa fa-uaser"></i> Edit Faq</li>
             </ol>
         </section>
         <section class="content">
