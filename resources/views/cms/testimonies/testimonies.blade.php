@@ -20,7 +20,7 @@
                 <div class="col-xs-12">
                     <div class="box">
                         <div class="box-header">
-                            <a href="{{ route('cms.add-user') }}" class="btn btn-success btn-flat btn-social">
+                            <a href="{{ route('cms.add-testimony') }}" class="btn btn-success btn-flat btn-social">
                                 <i class="fa fa-plus"></i> Tambah Testimoni
                             </a>
                         </div>
@@ -33,134 +33,38 @@
                                 </div>
                                 <div class="row">
                                     <div class="col-sm-12">
-                                        <table id="example2" class="table table-bordered table-hover dataTable"
-                                            role="grid" aria-describedby="example2_info">
+                                        <table id="testimonies-table" class="table table-bordered table-hover dataTable"
+                                            role="grid" aria-describedby="testimonies_info">
                                             <thead>
                                                 <tr role="row">
-                                                    <th class="sorting_asc" tabindex="0" aria-controls="example2"
-                                                        rowspan="1" colspan="1" aria-sort="ascending"
-                                                        aria-label="Rendering engine: activate to sort column descending">
-                                                        Rendering engine</th>
-                                                    <th class="sorting" tabindex="0" aria-controls="example2"
-                                                        rowspan="1" colspan="1"
-                                                        aria-label="Browser: activate to sort column ascending">Browser</th>
-                                                    <th class="sorting" tabindex="0" aria-controls="example2"
-                                                        rowspan="1" colspan="1"
-                                                        aria-label="Platform(s): activate to sort column ascending">
-                                                        Platform(s)</th>
-                                                    <th class="sorting" tabindex="0" aria-controls="example2"
-                                                        rowspan="1" colspan="1"
-                                                        aria-label="Engine version: activate to sort column ascending">
-                                                        Engine version</th>
-                                                    <th class="sorting" tabindex="0" aria-controls="example2"
-                                                        rowspan="1" colspan="1"
-                                                        aria-label="CSS grade: activate to sort column ascending">CSS grade
-                                                    </th>
+                                                    <th class="sorting_asc" tabindex="0" rowspan="1" colspan="1">
+                                                        ID</th>
+                                                    <th class="sorting" tabindex="0" rowspan="1" colspan="1">
+                                                        Email client</th>
+                                                    <th class="sorting" tabindex="0" rowspan="1" colspan="1">
+                                                        Nama client</th>
+                                                    <th class="sorting" tabindex="0" rowspan="1" colspan="1">
+                                                        Testimony</th>
+                                                    <th class="sorting" tabindex="0" rowspan="1" colspan="1">
+                                                        Status</th>
+                                                    <th class="sorting" tabindex="0" rowspan="1" colspan="1">
+                                                        Action</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                                <tr role="row" class="odd">
-                                                    <td class="sorting_1">Gecko</td>
-                                                    <td>Firefox 1.0</td>
-                                                    <td>Win 98+ / OSX.2+</td>
-                                                    <td>1.7</td>
-                                                    <td>A</td>
-                                                </tr>
-                                                <tr role="row" class="even">
-                                                    <td class="sorting_1">Gecko</td>
-                                                    <td>Firefox 1.5</td>
-                                                    <td>Win 98+ / OSX.2+</td>
-                                                    <td>1.8</td>
-                                                    <td>A</td>
-                                                </tr>
-                                                <tr role="row" class="odd">
-                                                    <td class="sorting_1">Gecko</td>
-                                                    <td>Firefox 2.0</td>
-                                                    <td>Win 98+ / OSX.2+</td>
-                                                    <td>1.8</td>
-                                                    <td>A</td>
-                                                </tr>
-                                                <tr role="row" class="even">
-                                                    <td class="sorting_1">Gecko</td>
-                                                    <td>Firefox 3.0</td>
-                                                    <td>Win 2k+ / OSX.3+</td>
-                                                    <td>1.9</td>
-                                                    <td>A</td>
-                                                </tr>
-                                                <tr role="row" class="odd">
-                                                    <td class="sorting_1">Gecko</td>
-                                                    <td>Camino 1.0</td>
-                                                    <td>OSX.2+</td>
-                                                    <td>1.8</td>
-                                                    <td>A</td>
-                                                </tr>
-                                                <tr role="row" class="even">
-                                                    <td class="sorting_1">Gecko</td>
-                                                    <td>Camino 1.5</td>
-                                                    <td>OSX.3+</td>
-                                                    <td>1.8</td>
-                                                    <td>A</td>
-                                                </tr>
-                                                <tr role="row" class="odd">
-                                                    <td class="sorting_1">Gecko</td>
-                                                    <td>Netscape 7.2</td>
-                                                    <td>Win 95+ / Mac OS 8.6-9.2</td>
-                                                    <td>1.7</td>
-                                                    <td>A</td>
-                                                </tr>
-                                                <tr role="row" class="even">
-                                                    <td class="sorting_1">Gecko</td>
-                                                    <td>Netscape Browser 8</td>
-                                                    <td>Win 98SE+</td>
-                                                    <td>1.7</td>
-                                                    <td>A</td>
-                                                </tr>
-                                                <tr role="row" class="odd">
-                                                    <td class="sorting_1">Gecko</td>
-                                                    <td>Netscape Navigator 9</td>
-                                                    <td>Win 98+ / OSX.2+</td>
-                                                    <td>1.8</td>
-                                                    <td>A</td>
-                                                </tr>
-                                                <tr role="row" class="even">
-                                                    <td class="sorting_1">Gecko</td>
-                                                    <td>Mozilla 1.0</td>
-                                                    <td>Win 95+ / OSX.1+</td>
-                                                    <td>1</td>
-                                                    <td>A</td>
-                                                </tr>
                                             </tbody>
                                         </table>
                                     </div>
                                 </div>
                                 <div class="row">
                                     <div class="col-sm-7">
-                                        <div class="dataTables_info" id="example2_info" role="status" aria-live="polite">
-                                            Showing 1 to 10 of 57 entries</div>
+                                        <div class="dataTables_info" id="testimony_info" role="status" aria-live="polite">
+                                            Showing 1 to 10 of 57 entries
+                                        </div>
                                     </div>
                                     <div class="col-sm-5">
-                                        <div class="dataTables_paginate paging_simple_numbers" id="example2_paginate">
-                                            <ul class="pagination">
-                                                <li class="paginate_button previous disabled" id="example2_previous"><a
-                                                        href="#" aria-controls="example2" data-dt-idx="0"
-                                                        tabindex="0">Previous</a></li>
-                                                <li class="paginate_button active"><a href="#"
-                                                        aria-controls="example2" data-dt-idx="1" tabindex="0">1</a>
-                                                </li>
-                                                <li class="paginate_button "><a href="#" aria-controls="example2"
-                                                        data-dt-idx="2" tabindex="0">2</a></li>
-                                                <li class="paginate_button "><a href="#" aria-controls="example2"
-                                                        data-dt-idx="3" tabindex="0">3</a></li>
-                                                <li class="paginate_button "><a href="#" aria-controls="example2"
-                                                        data-dt-idx="4" tabindex="0">4</a></li>
-                                                <li class="paginate_button "><a href="#" aria-controls="example2"
-                                                        data-dt-idx="5" tabindex="0">5</a></li>
-                                                <li class="paginate_button "><a href="#" aria-controls="example2"
-                                                        data-dt-idx="6" tabindex="0">6</a></li>
-                                                <li class="paginate_button next" id="example2_next"><a href="#"
-                                                        aria-controls="example2" data-dt-idx="7" tabindex="0">Next</a>
-                                                </li>
-                                            </ul>
+                                        <div class="dataTables_paginate paging_simple_numbers" id="testimonies_paginate">
+                                            <ul class="pagination"></ul>
                                         </div>
                                     </div>
                                 </div>
@@ -174,4 +78,116 @@
             <!-- /.row -->
         </section>
     </div>
+    <script>
+        $(document).ready(function() {
+            function fetchUserData(page = 1) {
+                $.get(`/api/show-testimony?page=${page}`, function(resp) {
+                    if (resp.data && resp.data.data) {
+                        const testimonies = resp.data.data;
+                        let tableBody = $("#testimonies-table tbody");
+                        tableBody.empty();
+
+                        if (testimonies.length === 0) {
+                            tableBody.append(`
+                                <tr>
+                                    <td colspan="4" class="text-center">No Data Found</td>
+                                </tr>
+                            `);
+                        } else {
+                            testimonies.forEach((testimony, index) => {
+                                tableBody.append(`
+                                    <tr>
+                                        <td>${index + 1}</td>
+                                        <td>${testimony.client_email}</td>
+                                        <td>${testimony.client_name}</td>
+                                        <td>${testimony.testimonial}</td>
+                                        <td>${testimony.is_approved ? 'Tampilkan' : 'Tidak ditampilkan' }</td>
+                                        <td>
+                                            <button class="btn btn-sm btn-social btn-info edit-testimony" data-id="${testimony.id}">
+                                                <i class="fa fa-pencil"></i> Edit
+                                            </button>
+                                            <button class="btn btn-sm btn-social btn-danger delete-testimony" data-id="${testimony.id}">
+                                                <i class="fa fa-trash"></i> Hapus
+                                            </button>
+                                        </td>
+                                    </tr>
+                                `);
+                            });
+                        }
+                        $("#testimonies_info").text(
+                            `Showing ${resp.data.from} to ${resp.data.to} of ${resp.data.total} entries`
+                        );
+
+                        let pagination = $("#testimonies_paginate .pagination");
+                        pagination.empty();
+
+                        pagination.append(`
+                            <li class="paginate_button previous ${resp.data.current_page === 1 ? "disabled" : ""}">
+                                <a href="#" data-page="${resp.data.current_page - 1}" tabIndex="0">Prev</a>
+                            </li>
+                        `);
+
+                        for (let i = 1; i <= resp.data.last_page; i++) {
+                            pagination.append(`
+                                <li class="paginate_button ${resp.data.current_page === i ? "active" : ""}">
+                                    <a href="#" data-page="${i}">${i}</a>
+                                </li>
+                            `);
+                        }
+
+                        pagination.append(`
+                            <li class="paginate_button next ${resp.data.current_page === resp.data.last_page ? "disabled" : ""}">
+                                <a href="#" data-page="${resp.data.current_page + 1}">Next</a>
+                            </li>
+                        `)
+                    } else {
+                        console.error("No data found in the response");
+                    }
+                }).fail(function(error) {
+                    console.error("Error fetching data", error);
+                    alert("Failed to fetch data. Please try again.");
+                });
+            }
+
+            fetchUserData();
+
+            $(document).on("click", ".edit-testimony", function() {
+                const testimonyId = $(this).data('id');
+                window.location.href = `/cms/testimony/preview-testimony/${testimonyId}`;
+            })
+            $(document).on("click", "#testimonies_paginate .pagination a", function(e) {
+                e.preventDefault();
+                const page = $(this).data('page');
+                if (page) {
+                    fetchUserData(page);
+                }
+            });
+
+            $(document).on("click", ".delete-service", function() {
+                const serviceId = $(this).data("id");
+                if (confirm("Apa kamu yakin ingin menghapus layanan ini?")) {
+                    $.ajax({
+                        url: `/api/cms/testimonies/delete-service`,
+                        type: 'DELETE',
+                        data: {
+                            id: serviceId
+                        },
+                        headers: {
+                            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr(
+                                'content'
+                            )
+                        },
+                        success: function(resp) {
+                            alert(resp.success);
+                            fetchUserData()
+                        },
+                        error: function(err) {
+                            alert("Error " + (err.responseJSON?.error) ||
+                                "An unknown error occured.");
+                        }
+                    });
+                }
+            });
+        });
+    </script>
 @stop

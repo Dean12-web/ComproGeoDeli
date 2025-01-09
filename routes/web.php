@@ -4,6 +4,7 @@ use App\Http\Controllers\CompanyController;
 use App\Http\Controllers\FaqController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\ServiceController;
+use App\Http\Controllers\TestimonyController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
@@ -60,5 +61,9 @@ Route::prefix('cms')->name('cms.')->group(function () {
     Route::post('/faqs/store-faqs', [FaqController::class, 'store'])->name('store-faqs')->middleware('auth');
     Route::get('/faqs/edit-faqs/{id}', [FaqController::class, 'edit'])->name('edit-faqs')->middleware('auth');
     Route::put('/faqs/update-faqs/{faq}', [FaqController::class, 'update'])->name('update-faqs')->middleware('auth');
-    Route::view('/testimony', 'cms.testimonies.testimonies')->name('testimony')->middleware('auth');
+
+    Route::get('/testimony', [TestimonyController::class, 'index'])->name('testimony')->middleware('auth');
+    Route::get('/testimony/add-testimony', [TestimonyController::class, 'create'])->name('add-testimony')->middleware('auth');
+    Route::get('/testimony/preview-testimony/{id}', [TestimonyController::class, 'edit'])->name('preview-testimony')->middleware('auth');
+    Route::put('/testimony/update-testimony/{testimony}', [TestimonyController::class, 'update'])->name('update-testimony')->middleware('auth');
 });

@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\FaqController;
 use App\Http\Controllers\ServiceController;
+use App\Http\Controllers\TestimonyController;
 use App\Http\Controllers\UserController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -29,3 +30,7 @@ Route::delete('cms/services/delete-service', [ServiceController::class, 'destroy
 
 Route::get('faqs', [FaqController::class, 'show'])->name('faqs');
 Route::delete('cms/faq/delete-faq', [FaqController::class, 'destroy'])->name('delete-faq');
+
+
+Route::get('show-testimony', [TestimonyController::class, 'show'])->name('show-testimony');
+Route::post('store-testimony', [TestimonyController::class, 'store'])->name('store-testimony');
