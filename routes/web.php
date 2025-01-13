@@ -3,6 +3,7 @@
 use App\Http\Controllers\CompanyController;
 use App\Http\Controllers\FaqController;
 use App\Http\Controllers\LoginController;
+use App\Http\Controllers\MediaController;
 use App\Http\Controllers\ServiceController;
 use App\Http\Controllers\TestimonyController;
 use App\Http\Controllers\UserController;
@@ -54,7 +55,9 @@ Route::prefix('cms')->name('cms.')->group(function () {
     Route::delete('/info/delete-info/{company}', [CompanyController::class, 'destroy'])->name('delete-info')->middleware('auth');
     Route::post('/info/store-info', [CompanyController::class, 'store'])->name('store-info')->middleware('auth');
 
-    Route::view('/media', 'cms.medias.medias')->name('media')->middleware('auth');
+    Route::get('/media',[MediaController::class, 'index'])->name('media')->middleware('auth');
+    Route::get('/media/add-media',[MediaController::class, 'create'])->name('add-media')->middleware('auth');
+    Route::post('/media/store-media',[MediaController::class, 'store'])->name('store-media')->middleware('auth');
 
     Route::get('/faqs', [FaqController::class, 'index'])->name('faqs')->middleware('auth');
     Route::get('/faqs/add-faqs', [FaqController::class, 'create'])->name('add-faqs')->middleware('auth');
@@ -66,4 +69,5 @@ Route::prefix('cms')->name('cms.')->group(function () {
     Route::get('/testimony/add-testimony', [TestimonyController::class, 'create'])->name('add-testimony')->middleware('auth');
     Route::get('/testimony/preview-testimony/{id}', [TestimonyController::class, 'edit'])->name('preview-testimony')->middleware('auth');
     Route::put('/testimony/update-testimony/{testimony}', [TestimonyController::class, 'update'])->name('update-testimony')->middleware('auth');
+    Route::delete('/testimony/delete-testimony/{testimony}', [TestimonyController::class, 'destroy'])->name('delete-testimony')->middleware('auth');
 });

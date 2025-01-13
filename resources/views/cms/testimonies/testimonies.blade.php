@@ -163,14 +163,15 @@
                 }
             });
 
-            $(document).on("click", ".delete-service", function() {
-                const serviceId = $(this).data("id");
+            $(document).on("click", ".delete-testimony", function() {
+                const testimonyId = $(this).data("id");
+                console.log("ini testi id", testimonyId)
                 if (confirm("Apa kamu yakin ingin menghapus layanan ini?")) {
                     $.ajax({
-                        url: `/api/cms/testimonies/delete-service`,
+                        url: `/api/delete-testimony`,
                         type: 'DELETE',
                         data: {
-                            id: serviceId
+                            id: testimonyId
                         },
                         headers: {
                             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr(

@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\FaqController;
+use App\Http\Controllers\MediaController;
 use App\Http\Controllers\ServiceController;
 use App\Http\Controllers\TestimonyController;
 use App\Http\Controllers\UserController;
@@ -33,4 +34,10 @@ Route::delete('cms/faq/delete-faq', [FaqController::class, 'destroy'])->name('de
 
 
 Route::get('show-testimony', [TestimonyController::class, 'show'])->name('show-testimony');
+Route::delete('/delete-testimony', [TestimonyController::class, 'destroy'])->name('delete-testimony');
+
+
 Route::post('store-testimony', [TestimonyController::class, 'store'])->name('store-testimony');
+
+Route::get('cms/show-media', [MediaController::class, 'show'])->name('show-media');
+Route::delete('cms/delete-media', [MediaController::class, 'destroy'])->name('delete-media');

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Testimony;
+use File;
 use Illuminate\Http\Request;
 
 class TestimonyController extends Controller
@@ -111,8 +112,25 @@ class TestimonyController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Testimony $testimony)
+    public function destroy(Testimony $testimony, Request $request)
     {
-        //
+        $id = $request->id;
+
+        $testimonies = $testimony->find($id);
+
+        if(!$testimonies){
+            return response()->json(["error" => "Testimoni tidak ditemukan"],404);
+        }
+
+        $filePath = public_path('storage/images/' . $testimonies->client_photo);
+
+        // Delete the file if it exists
+        if (File::exists($filePath)) {
+            File::delete($filePath);
+        }
+
+        $testimonies->delete();
+
+        return response()->json(["success" => "Testimoni berhasil dihapus"],200);
     }
 }
