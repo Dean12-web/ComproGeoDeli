@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\CompanyController;
+use App\Http\Controllers\ContactController;
 use App\Http\Controllers\FaqController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\MediaController;
@@ -40,7 +41,15 @@ Route::prefix('cms')->name('cms.')->group(function () {
     Route::get('/users/add-user', [UserController::class, 'create'])->name('add-user')->middleware('auth');
     Route::post('/users/store-user', [UserController::class, 'store'])->name('store-user')->middleware('auth');
     Route::view('/blogs', 'cms.blogs.blogs')->name('blogs')->middleware('auth');
-    Route::view('/contact', 'cms.contacts.contacts')->name('contact')->middleware('auth');
+    
+    Route::get('/contact', [ContactController::class, 'index'])->name('contact')->middleware('auth');
+    Route::get('/contact/add-contact', [ContactController::class, 'create'])->name('add-contact')->middleware('auth');
+    Route::post('/contact/store-contact', [ContactController::class, 'store'])->name('store-contact')->middleware('auth');
+    Route::get('/contact/edit-contact/{id}', [ContactController::class, 'edit'])->name('edit-contact')->middleware('auth');
+    Route::put('/contact/update-contact/{contact}', [ContactController::class, 'update'])->name('update-contact')->middleware('auth');
+
+
+
     Route::get('/services', [ServiceController::class, 'index'])->name('services')->middleware('auth');
     Route::get('/services/add-services', [ServiceController::class, 'create'])->name('add-services')->middleware('auth');
     Route::get('/services/edit-services/{id}', [ServiceController::class, 'edit'])->name('edit-services')->middleware('auth');
